@@ -10,171 +10,182 @@
   --bg: #F6F8F7;
   --text: #2F3E3E;
   --accent: #84A98C;
-  --glass: rgba(255,255,255,0.6);
+  --olive: #5F7F5F;
+  --card: rgba(255,255,255,0.75);
 }
 
 body.dark {
   --bg: #1f2f2f;
   --text: #e6f0f0;
-  --glass: rgba(255,255,255,0.08);
+  --card: rgba(255,255,255,0.08);
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: 0.3s ease;
-  overflow-x: hidden;
-}
-
-/* SCROLL BAR */
-.progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent);
-  width: 0%;
-  z-index: 2000;
 }
 
 /* NAV */
 nav {
-  position: fixed;
-  width: 100%;
-  backdrop-filter: blur(12px);
-  background: var(--glass);
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 28px;
-  z-index: 1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 nav h2 {
-  margin: 0;
-  color: var(--accent);
-  font-size: 1.2rem;
+  margin:0;
+  color:var(--accent);
 }
 
-/* TOGGLE */
-.switch {
-  width: 46px;
-  height: 22px;
-  position: relative;
+/* PREMIUM TOGGLE */
+.toggle-wrapper {
+  display:flex;
+  align-items:center;
 }
-.switch input { display:none; }
+
+.switch {
+  position:relative;
+  width:44px;
+  height:22px;
+}
+
+.switch input {
+  display:none;
+}
+
 .slider {
   position:absolute;
   background:#ccc;
   border-radius:20px;
-  width:100%; height:100%;
+  width:100%;
+  height:100%;
   cursor:pointer;
+  transition:0.4s;
 }
+
 .slider:before {
   content:"";
   position:absolute;
-  height:16px; width:16px;
-  left:3px; bottom:3px;
+  height:16px;
+  width:16px;
+  left:3px;
+  bottom:3px;
   background:white;
   border-radius:50%;
-  transition:0.3s;
+  transition:0.4s;
+  box-shadow:0 0 6px rgba(0,0,0,0.2);
 }
+
+/* ACTIVE */
 input:checked + .slider {
   background:var(--accent);
+  box-shadow:0 0 10px rgba(132,169,140,0.6);
 }
+
 input:checked + .slider:before {
-  transform:translateX(22px);
+  transform:translateX(20px);
 }
 
 /* HERO */
 .hero {
   text-align:center;
-  padding:130px 20px 80px;
-  max-width:800px;
-  margin:auto;
+  padding:80px 20px 40px;
 }
 
 .hero h1 {
-  font-size:2.8rem;
-  letter-spacing:-0.5px;
+  font-size:2.7rem;
+  margin-bottom:10px;
 }
 
 .hero p {
-  margin-top:12px;
   color:#52796F;
-  font-size:1.05rem;
+  max-width:500px;
+  margin:auto;
 }
 
-/* BUTTON */
 .btn {
-  margin-top:22px;
+  margin-top:20px;
   display:inline-block;
-  padding:12px 24px;
+  padding:12px 26px;
   background:var(--accent);
   color:white;
-  border-radius:28px;
+  border-radius:30px;
   text-decoration:none;
-  font-size:0.95rem;
+}
+
+/* PRODUCT */
+.product {
+  text-align:center;
+  padding:40px 20px;
+  max-width:700px;
+  margin:auto;
+}
+
+.product p {
+  color:#52796F;
 }
 
 /* FEATURES */
 .features {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  padding:40px 20px;
-  max-width:1000px;
-  margin:auto;
+  padding:30px;
 }
 
 .card {
-  background:var(--glass);
-  backdrop-filter:blur(12px);
-  border-radius:18px;
-  padding:22px;
-  transition:0.3s;
-  font-size:0.95rem;
-}
-.card:hover {
-  transform:translateY(-6px);
-}
-
-/* IMAGE SECTIONS */
-.section {
-  height:90vh;
-  position:relative;
-}
-
-.section img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.overlay {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  background:var(--card);
+  padding:20px;
+  border-radius:16px;
   text-align:center;
-  color:white;
 }
 
-.overlay h2 {
-  font-weight:500;
+/* IMAGES */
+.image-section {
+  text-align:center;
+  padding:40px 20px;
+}
+
+.image-section img {
+  width:100%;
+  max-width:500px;
+  border-radius:20px;
+}
+
+.caption {
+  margin-top:10px;
+  color:#52796F;
 }
 
 /* FOOTER */
 footer {
   text-align:center;
   padding:30px;
-  font-size:0.9rem;
 }
 
 .name {
-  color:var(--accent);
-  font-weight:600;
+  color:var(--olive);
+  font-weight:700;
+}
+
+/* MUSIC */
+.music-btn {
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  background:var(--accent);
+  color:white;
+  padding:10px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
 /* CHAT FIX */
@@ -186,67 +197,77 @@ iframe {
 
 <body>
 
-<div class="progress" id="progress"></div>
-
 <nav>
   <h2>Veliora 🌿</h2>
-  <label class="switch">
-    <input type="checkbox" onclick="toggleMode()">
-    <span class="slider"></span>
-  </label>
+
+  <div class="toggle-wrapper">
+    <label class="switch">
+      <input type="checkbox" onclick="toggleMode()">
+      <span class="slider"></span>
+    </label>
+  </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Veliora 🌿</h1>
-  <p id="typing"></p>
-  <a href="#" class="btn">Start Exploring</a>
+  <h1>Understand Your Health, Simply 🌿</h1>
+  <p>Veliora transforms complex lab reports into clear, calm insights you can understand.</p>
+  <a href="#" class="btn">Try Veliora</a>
 </section>
 
+<!-- PRODUCT -->
+<section class="product">
+  <h2>What is Veliora?</h2>
+  <p>
+    Veliora is your personal medical interpreter—helping you understand lab reports,
+    detect abnormal values, and guide you with meaningful insights and suggestions.
+  </p>
+</section>
+
+<!-- FEATURES -->
 <section class="features">
-  <div class="card">🧠 Understand lab values instantly</div>
-  <div class="card">🍎 Get simple diet guidance</div>
-  <div class="card">🌿 Improve lifestyle habits</div>
-  <div class="card">📊 View clear summaries</div>
+  <div class="card">🧠 Smart Interpretation</div>
+  <div class="card">🍎 Diet Suggestions</div>
+  <div class="card">🌿 Lifestyle Guidance</div>
+  <div class="card">📊 Report Summary</div>
 </section>
 
-<section class="section">
-  <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200">
-  <div class="overlay"><h2>Clarity, not confusion 🌿</h2></div>
+<!-- IMAGES -->
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
+  <div class="caption">Clarity in every report 🌿</div>
 </section>
 
-<section class="section">
-  <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=1200">
-  <div class="overlay"><h2>Designed to feel calm 🌸</h2></div>
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800">
+  <div class="caption">Calm, minimal experience 🌸</div>
+</section>
+
+<section class="image-section">
+  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+  <div class="caption">Designed for ease and understanding 🌿</div>
 </section>
 
 <footer>
   Made by <span class="name">Mehak Gurjar</span> 🌿
 </footer>
 
+<!-- MUSIC -->
+<div class="music-btn" onclick="toggleMusic()">🎧</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_1.mp3">
+</audio>
+
 <script>
-// DARK MODE
 function toggleMode(){
   document.body.classList.toggle("dark");
 }
 
-// TYPING
-const text = "Turning medical reports into simple, clear insights 🌿";
-let i = 0;
-function type(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(type, 35);
-  }
+const music = document.getElementById("bgMusic");
+function toggleMusic(){
+  music.paused ? music.play() : music.pause();
 }
-type();
-
-// SCROLL BAR
-window.onscroll = () => {
-  let winScroll = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  document.getElementById("progress").style.width = (winScroll / height) * 100 + "%";
-};
 </script>
 
 <!-- WATSON -->
