@@ -8,14 +8,16 @@
 <style>
 :root {
   --bg:#0f1f1c;
-  --text:#fff;
+  --text:#ffffff;
   --accent:#84A98C;
   --gold:#d4af37;
+  --card:rgba(255,255,255,0.08);
 }
 
 body.light {
   --bg:#F6F8F7;
   --text:#2F3E3E;
+  --card:rgba(255,255,255,0.7);
 }
 
 body {
@@ -23,30 +25,7 @@ body {
   font-family:'Segoe UI',sans-serif;
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
-  transition:0.4s;
-}
-
-/* LOADER */
-.loader {
-  position:fixed;
-  inset:0;
-  background:#0f1f1c;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.loader h1 {
-  color:#84A98C;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%{opacity:0.4}
-  50%{opacity:1}
-  100%{opacity:0.4}
+  transition:0.3s;
 }
 
 /* NAV */
@@ -54,41 +33,89 @@ nav {
   display:flex;
   justify-content:space-between;
   padding:20px;
+  align-items:center;
 }
 
-.toggle {
-  cursor:pointer;
-  background:var(--accent);
-  padding:6px 12px;
+/* TOGGLE SWITCH */
+.switch {
+  position:relative;
+  width:50px;
+  height:24px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position:absolute;
+  background:#ccc;
   border-radius:20px;
+  width:100%;
+  height:100%;
+  cursor:pointer;
 }
 
-/* HERO */
+.slider:before {
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:white;
+  border-radius:50%;
+  top:3px;
+  left:3px;
+  transition:0.3s;
+}
+
+input:checked + .slider {
+  background:var(--accent);
+}
+
+input:checked + .slider:before {
+  transform:translateX(26px);
+}
+
+/* HERO IMAGE (FIXED) */
+.hero-img {
+  width:100%;
+  height:300px;
+  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
+}
+
+/* HERO TEXT */
 .hero {
   text-align:center;
-  padding:80px 20px;
+  padding:40px 20px;
 }
 
 .hero h1 {
-  font-size:3rem;
-  opacity:0;
-  transform:translateY(-50px);
-  animation:drop 1s forwards;
+  font-size:2.8rem;
+  animation:drop 1s ease forwards;
 }
 
 @keyframes drop {
-  to {opacity:1; transform:translateY(0);}
+  from{opacity:0; transform:translateY(-40px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-/* PARALLAX */
-.parallax {
-  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover fixed;
-  height:250px;
+/* FULL WIDTH TEXT BOX */
+.about {
+  margin:40px auto;
+  max-width:1000px;
+  padding:30px;
   border-radius:20px;
-  margin:30px;
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  text-align:center;
+  transition:0.4s;
 }
 
-/* GRID */
+.about:hover {
+  transform:translateY(-6px);
+  border:1px solid var(--gold);
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* GALLERY */
 .gallery {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -96,55 +123,44 @@ nav {
   padding:30px;
 }
 
-/* 3D CARDS */
-.card {
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
-  padding:20px;
-  transition:0.3s;
-  transform-style:preserve-3d;
-}
-
-.card:hover {
-  transform:rotateX(5deg) rotateY(5deg) scale(1.05);
-  box-shadow:0 15px 40px rgba(0,0,0,0.3);
-  border:1px solid var(--gold);
-}
-
-/* IMAGE */
-.gallery img {
+.gallery-item img {
   width:100%;
   height:170px;
   object-fit:cover;
-  border-radius:15px;
+  border-radius:16px;
+  transition:0.4s;
 }
 
-/* CURSOR GLOW */
-.glow {
-  position:fixed;
-  width:300px;
-  height:300px;
-  background:radial-gradient(circle, rgba(132,169,140,0.25), transparent);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
+.gallery-item:hover img {
+  transform:scale(1.07);
 }
 
-/* CHAT INTRO */
-.intro {
-  position:fixed;
-  bottom:100px;
-  right:20px;
-  background:#84A98C;
-  padding:15px;
-  border-radius:15px;
-  color:white;
-  animation:fadeIn 1s;
+.gallery-item p {
+  text-align:center;
+  margin-top:8px;
 }
 
-@keyframes fadeIn {
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1;}
+/* CARDS */
+.features {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:25px;
+  padding:50px;
+}
+
+.card {
+  width:260px;
+  padding:25px;
+  border-radius:18px;
+  background:var(--card);
+  text-align:center;
+  transition:0.4s;
+}
+
+.card:hover {
+  transform:translateY(-8px);
+  border:1px solid var(--gold);
 }
 
 /* FOOTER */
@@ -157,78 +173,83 @@ footer {
 
 <body>
 
-<!-- LOADER -->
-<div class="loader" id="loader">
-  <h1>Veliora 🌿</h1>
-</div>
-
-<!-- CURSOR -->
-<div class="glow" id="glow"></div>
-
 <nav>
   <div>Veliora 🌿</div>
-  <div class="toggle" onclick="toggleMode()">Toggle Mode</div>
+
+  <label class="switch">
+    <input type="checkbox" onclick="toggleMode()">
+    <span class="slider"></span>
+  </label>
 </nav>
 
+<!-- IMAGE -->
+<div class="hero-img"></div>
+
+<!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
-  <p>Your calm AI for lab report understanding</p>
 </section>
 
-<!-- PARALLAX -->
-<div class="parallax"></div>
+<!-- ABOUT -->
+<div class="about">
+  <h2>What is Veliora?</h2>
+  <p>
+    Veliora is your personal AI assistant designed to simplify complex lab reports 
+    into clear, understandable insights. It helps you interpret values, understand 
+    health implications, and guides you with lifestyle and diet suggestions — all 
+    in a calm, minimal, and aesthetic experience 🌿
+  </p>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
+    <p>Understanding reports</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
+    <p>Calm wellness</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+    <p>Minimal lifestyle</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800">
+    <p>Healthy routines</p>
+  </div>
+</section>
 
 <!-- CARDS -->
-<section class="gallery">
+<section class="features">
+  <div class="card">
+    <h3>Smart Insights</h3>
+    <p>Instant explanations of lab values</p>
+  </div>
 
-<div class="card">
-  <h3>Elite Academics 🏛</h3>
-  <p>Advanced curriculum for excellence.</p>
-</div>
+  <div class="card">
+    <h3>AI Guidance</h3>
+    <p>Personalized suggestions</p>
+  </div>
 
-<div class="card">
-  <h3>Global Community 🌍</h3>
-  <p>Connect with learners worldwide.</p>
-</div>
-
-<div class="card">
-  <h3>Digital Campus 💻</h3>
-  <p>Access anywhere, anytime.</p>
-</div>
-
-<div class="card">
-  <h3>AI Support 🤖</h3>
-  <p>Your assistant always ready.</p>
-</div>
-
+  <div class="card">
+    <h3>Simple Experience</h3>
+    <p>Minimal & stress-free UI 🌿</p>
+  </div>
 </section>
 
 <footer>
-Made by <b style="color:#84A98C;">Mehak Gurjar</b> 🌿
+  Made by <b style="color:#84A98C;">Mehak Gurjar</b> 🌿
 </footer>
 
-<!-- CHAT INTRO -->
-<div class="intro">
-Hi, I’m Veliora 🌿
-</div>
-
 <script>
-/* LOADER */
-window.onload = () => {
-  document.getElementById("loader").style.display="none";
-};
-
-/* MODE */
 function toggleMode(){
   document.body.classList.toggle("light");
 }
-
-/* CURSOR */
-const glow=document.getElementById("glow");
-document.addEventListener("mousemove",e=>{
-  glow.style.left=e.clientX+"px";
-  glow.style.top=e.clientY+"px";
-});
 </script>
 
 <!-- WATSON -->
