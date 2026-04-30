@@ -7,17 +7,15 @@
 
 <style>
 :root {
-  --bg: linear-gradient(135deg,#0f1f1c,#1f3d35);
+  --bg:#0f1f1c;
   --text:#ffffff;
   --accent:#84A98C;
-  --olive:#4f6f63;
-  --card:rgba(255,255,255,0.08);
+  --contrast:#d4af37;
 }
 
 body.light {
-  --bg: linear-gradient(135deg,#ffffff,#eaf3ef);
+  --bg:#ffffff;
   --text:#2F3E3E;
-  --card:rgba(255,255,255,0.8);
 }
 
 body {
@@ -42,34 +40,29 @@ nav {
   align-items:center;
 }
 
-.toggle-text {
-  font-size:0.7rem;
-  color:#6b8f80;
-}
-
 .switch {
-  position:relative;
   width:50px;
   height:24px;
+  position:relative;
 }
 .switch input{display:none;}
 
 .slider {
-  position:absolute;
   background:#ccc;
   border-radius:20px;
+  position:absolute;
   width:100%;
   height:100%;
 }
 .slider:before {
   content:"";
-  position:absolute;
   width:18px;
   height:18px;
   background:white;
-  border-radius:50%;
+  position:absolute;
   top:3px;
   left:3px;
+  border-radius:50%;
   transition:0.3s;
 }
 input:checked + .slider {
@@ -79,72 +72,62 @@ input:checked + .slider:before {
   transform:translateX(26px);
 }
 
+.toggle-text {
+  font-size:0.7rem;
+}
+
 /* HERO */
 .hero {
   text-align:center;
   padding:50px 20px;
-  animation:fadeUp 1s ease;
 }
 
 .hero h1 {
   font-size:3rem;
+  animation:drop 1s ease forwards;
 }
 
-.subtitle {
-  font-size:1rem;
+@keyframes drop {
+  from {opacity:0; transform:translateY(-60px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.quote {
+  font-style:italic;
   color:#8fb3a5;
+  margin-top:8px;
 }
 
-/* SCROLL IMAGE */
+/* PARALLAX IMAGE */
 .hero-img {
-  height:320px;
+  height:300px;
   background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover fixed;
 }
 
-/* BIG BOX */
-.big-about {
-  margin:50px auto;
-  max-width:1200px;
-  padding:45px;
-  border-radius:22px;
-  background:var(--card);
-  backdrop-filter:blur(15px);
-  text-align:center;
-  transition:0.4s;
-}
-
-.big-about:hover {
-  transform:translateY(-6px);
-  background:rgba(132,169,140,0.15);
-}
-
-.big-about h2 {
-  font-size:2rem;
-}
-
-.highlight {
-  color:var(--olive);
-  font-weight:600;
-}
-
-.big-about p {
-  line-height:1.8;
-  font-size:1rem;
-}
-
-/* SMALL BOX */
-.about {
-  margin:40px auto;
+/* RHOMBUS BOX */
+.rhombus {
   max-width:1000px;
-  padding:30px;
+  margin:-80px auto 40px;
+  padding:40px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+  transform:rotate(-2deg);
   border-radius:20px;
-  background:var(--card);
-  text-align:center;
   transition:0.4s;
 }
 
-.about:hover {
-  transform:translateY(-6px);
+.rhombus:hover {
+  transform:rotate(0deg) scale(1.02);
+  border:2px solid var(--contrast);
+}
+
+.rhombus h2 {
+  transform:rotate(2deg);
+}
+
+.rhombus p {
+  transform:rotate(2deg);
+  line-height:1.7;
 }
 
 /* GALLERY */
@@ -156,19 +139,19 @@ input:checked + .slider:before {
 }
 
 .gallery-item {
-  animation:fadeUp 1s ease;
+  overflow:hidden;
+  border-radius:16px;
 }
 
 .gallery-item img {
   width:100%;
   height:170px;
   object-fit:cover;
-  border-radius:16px;
   transition:0.4s;
 }
 
 .gallery-item:hover img {
-  transform:scale(1.08);
+  transform:scale(1.1);
 }
 
 /* CARDS */
@@ -184,22 +167,42 @@ input:checked + .slider:before {
   width:260px;
   padding:25px;
   border-radius:18px;
-  background:var(--card);
+  background:rgba(255,255,255,0.1);
   transition:0.4s;
 }
 
 .card:hover {
   transform:translateY(-10px);
-  background:rgba(132,169,140,0.2);
+  border:1px solid var(--contrast);
 }
 
-/* ANIMATION */
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(40px);}
-  to {opacity:1; transform:translateY(0);}
+/* FINAL TEXT BOX */
+.explain {
+  max-width:1000px;
+  margin:50px auto;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.1);
+  text-align:center;
+  transition:0.4s;
 }
 
-/* FOOTER */
+.explain:hover {
+  border:1px solid var(--accent);
+  transform:translateY(-6px);
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
 footer {
   text-align:center;
   padding:30px;
@@ -224,61 +227,50 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
-  <p class="subtitle">Simplifying health understanding through calm AI intelligence</p>
+  <p class="quote">“Clarity in health begins with understanding.” 🌿</p>
 </section>
 
 <!-- IMAGE -->
 <div class="hero-img"></div>
 
-<!-- BIG BOX -->
-<div class="big-about">
-  <h2><span class="highlight">Veliora</span> — A Smarter Way to Understand Your Health</h2>
+<!-- RHOMBUS BOX -->
+<div class="rhombus reveal">
+  <h2>✨ Veliora — Your AI Health Companion</h2>
   <p>
-    Veliora is an AI-powered medical interpreter that transforms complex laboratory data into meaningful insights.
-    It bridges the gap between technical medical terminology and everyday understanding, helping users interpret their
-    reports with clarity and confidence. Instead of overwhelming numbers and unfamiliar terms, Veliora presents
-    information in a calm, structured, and intuitive way.
-
-    <br><br>
-
-    It not only explains what each value means but also highlights patterns, identifies abnormalities, and provides
-    actionable suggestions related to diet, lifestyle, and general wellness. By doing so, it empowers users to take
-    control of their health decisions without confusion or stress.
-
-    <br><br>
-
-    Designed with simplicity and aesthetics at its core, Veliora ensures that interacting with health data feels
-    effortless, accessible, and reassuring 🌿
-  </p>
-</div>
-
-<!-- SMALL -->
-<div class="about">
-  <h2>What is Veliora?</h2>
-  <p>
-    A calm AI assistant that simplifies lab reports into clear, understandable insights and guidance.
+    Veliora 🤖 simplifies complex lab reports into clear insights 🧠, helping you understand values 📊,
+    detect abnormalities ⚠️, and improve your health 🌱 through smart guidance.
+    It transforms confusion into clarity 💡 and data into decisions.
   </p>
 </div>
 
 <!-- GALLERY -->
 <section class="gallery">
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
   </div>
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
   </div>
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
   </div>
 </section>
 
 <!-- CARDS -->
 <section class="features">
-  <div class="card">Smart Insights</div>
-  <div class="card">AI Guidance</div>
-  <div class="card">Minimal Experience</div>
+  <div class="card reveal">🧠 Smart Insights</div>
+  <div class="card reveal">🍎 Health Guidance</div>
+  <div class="card reveal">🌿 Calm Experience</div>
 </section>
+
+<!-- EXPLAIN -->
+<div class="explain reveal">
+  <h3>📘 What Veliora Does</h3>
+  <p>
+    It interprets lab results, highlights risks, explains values, and suggests improvements —
+    all in a simple, calm, and aesthetic way 🌿
+  </p>
+</div>
 
 <footer>
   Made by <b style="color:#84A98C;">Mehak Gurjar</b> 🌿
@@ -288,6 +280,16 @@ footer {
 function toggleMode(){
   document.body.classList.toggle("light");
 }
+
+/* SCROLL */
+function reveal(){
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-80){
+      el.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', reveal);
 </script>
 
 <!-- WATSON -->
