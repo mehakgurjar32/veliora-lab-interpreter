@@ -111,9 +111,7 @@ input:checked + .slider:before {
   background:rgba(0,0,0,0.45);
 }
 
-.hero h1,
-.hero p,
-.hero a {
+.hero h1, .hero p, .hero a {
   position:relative;
 }
 
@@ -121,11 +119,9 @@ input:checked + .slider:before {
   font-size:3rem;
 }
 
-/* NEW SMALL DEFINITION */
 .tagline {
-  margin-top:8px;
   font-size:0.95rem;
-  opacity:0.9;
+  margin-top:8px;
   max-width:450px;
 }
 
@@ -235,12 +231,7 @@ iframe {
 <!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
-  
-  <!-- 👇 ADDED LINE -->
-  <p class="tagline">
-    Veliora is your personal AI that simplifies lab reports into clear, calm insights 🌿
-  </p>
-
+  <p class="tagline">Your personal AI that simplifies lab reports into clear insights 🌿</p>
   <a href="#" class="btn">Start Exploring</a>
 </section>
 
@@ -252,8 +243,9 @@ iframe {
   <div class="card">📊 Report Summary</div>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY (BALANCED 2 ROWS) -->
 <section class="gallery">
+
   <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
     <p>Medical clarity 🌿</p>
@@ -283,6 +275,17 @@ iframe {
     <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800">
     <p>Peaceful living 🌸</p>
   </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800">
+    <p>Balanced lifestyle 🌿</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800">
+    <p>Healthy habits</p>
+  </div>
+
 </section>
 
 <footer>
@@ -303,7 +306,7 @@ function toggleMode(){
 
 const music = document.getElementById("bgMusic");
 
-/* start after first click */
+/* Play after first interaction */
 document.addEventListener("click", () => {
   if (music.paused) {
     music.volume = 0.3;
