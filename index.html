@@ -9,8 +9,8 @@
 :root {
   --bg:#0f1f1c;
   --text:#ffffff;
-  --card:rgba(255,255,255,0.08);
   --accent:#84A98C;
+  --card:rgba(255,255,255,0.08);
 }
 
 body.light {
@@ -25,6 +25,15 @@ body {
   background:var(--bg);
   color:var(--text);
   transition:0.4s;
+}
+
+/* TOP STRIP */
+.top-strip {
+  text-align:center;
+  font-size:0.75rem;
+  padding:6px;
+  background:rgba(132,169,140,0.15);
+  letter-spacing:1px;
 }
 
 /* NAV */
@@ -80,7 +89,7 @@ input:checked + .slider:before {
 /* HERO */
 .hero {
   text-align:center;
-  padding:50px 20px;
+  padding:50px 20px 20px;
 }
 
 .hero h1 {
@@ -88,9 +97,16 @@ input:checked + .slider:before {
   animation:drop 1s ease forwards;
 }
 
-.quote {
+.subtitle {
+  font-size:0.9rem;
   color:#7aa697;
+  margin-top:5px;
+}
+
+.quote {
   font-style:italic;
+  margin-top:6px;
+  color:#8fb3a5;
 }
 
 @keyframes drop {
@@ -98,14 +114,14 @@ input:checked + .slider:before {
   to {opacity:1; transform:translateY(0);}
 }
 
-/* IMAGE */
+/* PARALLAX IMAGE */
 .hero-img {
-  height:300px;
+  height:320px;
   background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
-  margin-top:-40px;
+  background-attachment:fixed;
 }
 
-/* OVERLAY TEXT BOX */
+/* OVERLAY BOX */
 .rhombus {
   max-width:1000px;
   margin:-100px auto 40px;
@@ -120,7 +136,7 @@ input:checked + .slider:before {
 
 .rhombus:hover {
   transform:translateY(-8px);
-  border:1px solid #84A98C;
+  border:1px solid var(--accent);
 }
 
 .rhombus p {
@@ -167,7 +183,7 @@ input:checked + .slider:before {
 
 .card:hover {
   transform:translateY(-6px);
-  border:1px solid #84A98C;
+  border:1px solid var(--accent);
 }
 
 /* FOOTER */
@@ -179,6 +195,9 @@ footer {
 </head>
 
 <body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">AI-powered health clarity 🌿</div>
 
 <nav>
   <div>Veliora 🌿</div>
@@ -195,20 +214,20 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
+  <p class="subtitle">Your personal AI lab report interpreter</p>
   <p class="quote">“Clarity in health begins with understanding.” 🌿</p>
 </section>
 
 <!-- IMAGE -->
 <div class="hero-img"></div>
 
-<!-- OVERLAY BOX -->
+<!-- OVERLAY -->
 <div class="rhombus">
   <h2>✨ Veliora — Your AI Health Companion</h2>
   <p>
     Veliora 🤖 simplifies complex lab reports into clear, structured insights 🧠. 
     It helps you understand values 📊, detect abnormalities ⚠️, and improve your health 🌱 
-    through intelligent guidance. By transforming raw medical data into meaningful explanations, 
-    Veliora removes confusion and replaces it with clarity 💡—empowering you to make informed decisions.
+    through intelligent guidance.
   </p>
 </div>
 
@@ -221,10 +240,10 @@ footer {
 
 <!-- FEATURES -->
 <section class="features">
-  <div class="card">🧠 Smart Insights<br><small>Understand values easily</small></div>
-  <div class="card">🍎 Health Guidance<br><small>Diet & lifestyle tips</small></div>
-  <div class="card">🌿 Calm Experience<br><small>Minimal & aesthetic UI</small></div>
-  <div class="card">📊 Data Clarity<br><small>Meaningful interpretation</small></div>
+  <div class="card">🧠 Smart Insights<br><small>Understand values</small></div>
+  <div class="card">🍎 Health Guidance<br><small>Better lifestyle</small></div>
+  <div class="card">🌿 Calm Experience<br><small>Minimal UI</small></div>
+  <div class="card">📊 Data Clarity<br><small>Clear interpretation</small></div>
 </section>
 
 <footer>
