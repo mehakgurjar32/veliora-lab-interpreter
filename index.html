@@ -7,276 +7,235 @@
 
 <style>
 :root {
-  --bg: #F6F8F7;
-  --text: #2F3E3E;
+  --bg: #0f1f1c;
   --accent: #84A98C;
   --olive: #5F7F5F;
-  --card: rgba(255,255,255,0.75);
+  --glass: rgba(255,255,255,0.08);
 }
 
-body.dark {
-  --bg: #1f2f2f;
-  --text: #e6f0f0;
-  --card: rgba(255,255,255,0.08);
-}
-
+/* BASE */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1b3a34, #0f1f1c);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* CURSOR GLOW */
+.cursor-glow {
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(132,169,140,0.25), transparent);
+  pointer-events:none;
+  transform:translate(-50%, -50%);
+  z-index:0;
 }
 
 /* NAV */
 nav {
-  display:flex;
-  justify-content:space-between;
-  padding:12px 16px;
-  background:var(--card);
-  backdrop-filter:blur(12px);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  padding:20px;
+  font-size:1.2rem;
+  color:#a8c3b0;
 }
-
-nav h2 { color:var(--accent); }
 
 /* HERO */
 .hero {
-  height:90vh;
-  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
   text-align:center;
-  color:white;
+  padding:60px 20px;
   position:relative;
 }
 
-.hero::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
+.hero h1 {
+  font-size:3rem;
+  opacity:0;
+  transform:translateY(-40px);
+  animation:drop 1s ease forwards;
 }
 
-.hero h1, .hero p {
-  position:relative;
+@keyframes drop {
+  to { opacity:1; transform:translateY(0); }
 }
 
 .tagline {
-  font-size:1rem;
-  max-width:450px;
+  color:#b7d1c1;
+  margin-top:10px;
 }
 
-/* FEATURES */
-.features {
+/* IMAGE GRID */
+.gallery {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  padding:40px;
+  padding:30px;
 }
 
-/* GALLERY */
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:25px;
-  padding:40px;
+.gallery-item {
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-/* COMMON ANIMATION BASE */
-.reveal {
-  opacity:0;
-  transform:translateY(40px);
-  transition:all 0.8s ease;
-}
-
-.reveal.active {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* IMAGE CARDS */
 .gallery-item img {
   width:100%;
   height:180px;
   object-fit:cover;
-  border-radius:18px;
-  transition:0.4s;
+  transition:0.5s;
 }
 
 .gallery-item:hover img {
-  transform:scale(1.05);
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  transform:scale(1.1);
 }
 
 .gallery-item p {
   text-align:center;
   margin-top:8px;
-  color:#52796F;
+  color:#a8c3b0;
 }
 
-/* TEXT CARDS */
-.text-card {
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(10px);
-  padding:20px;
-  border-radius:18px;
-  height:180px;
+/* GLASS CARDS */
+.features {
   display:flex;
-  flex-direction:column;
   justify-content:center;
-  text-align:center;
+  gap:30px;
+  flex-wrap:wrap;
+  padding:60px 20px;
 }
 
-.text-card h3 {
-  color:#84A98C;
+.card {
+  width:260px;
+  padding:25px;
+  border-radius:20px;
+  background:var(--glass);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.1);
+  text-align:center;
+  position:relative;
+  transition:0.4s;
+}
+
+/* GLOW BORDER */
+.card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  padding:1px;
+  background:linear-gradient(120deg,#84A98C,#d4af37);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0;
+  transition:0.4s;
+}
+
+.card:hover::before {
+  opacity:1;
+}
+
+.card:hover {
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+  color:#c7e3d1;
+}
+
+.card p {
+  color:#9bb8a9;
+  font-size:0.9rem;
 }
 
 /* FOOTER */
 footer {
   text-align:center;
   padding:30px;
+  color:#9bb8a9;
 }
-
-.name {
-  color:var(--olive);
-}
-
-/* MUSIC */
-.music-btn {
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  background:var(--accent);
-  color:white;
-  padding:12px;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-/* CHAT FIX */
-iframe { bottom:20px !important; }
-
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h2>Veliora 🌿</h2>
-</nav>
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="glow"></div>
+
+<nav>Veliora 🌿</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="reveal">Veliora 🌿</h1>
-  <p class="tagline reveal">Your personal AI that simplifies lab reports into clear insights</p>
+  <h1>Veliora 🌿</h1>
+  <p class="tagline">Your calm AI for understanding lab reports</p>
 </section>
 
-<!-- GALLERY -->
+<!-- IMAGES -->
 <section class="gallery">
-
-  <div class="gallery-item reveal">
+  <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
     <p>Medical clarity 🌿</p>
   </div>
 
-  <div class="gallery-item reveal">
+  <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
     <p>Understanding reports</p>
   </div>
 
-  <div class="gallery-item reveal">
+  <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
     <p>Calm wellness</p>
   </div>
 
-  <div class="gallery-item reveal">
+  <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
     <p>Minimal lifestyle</p>
   </div>
 
-  <div class="gallery-item reveal">
+  <div class="gallery-item">
     <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800">
     <p>Healthy routines</p>
   </div>
+</section>
 
-  <div class="text-card reveal">
+<!-- GLASS CARDS -->
+<section class="features">
+
+  <div class="card">
     <h3>Why Veliora?</h3>
-    <p>Understand lab values simply without confusion.</p>
+    <p>Understand lab values without confusion.</p>
   </div>
 
-  <div class="text-card reveal">
+  <div class="card">
     <h3>Smart Insights</h3>
-    <p>Diet + lifestyle suggestions instantly.</p>
+    <p>Diet & lifestyle suggestions instantly.</p>
   </div>
 
-  <div class="text-card reveal">
+  <div class="card">
     <h3>Designed for You</h3>
     <p>Minimal, aesthetic & calm 🌿</p>
+  </div>
+
+  <div class="card">
+    <h3>AI Assistant</h3>
+    <p>Your personal guide anytime.</p>
   </div>
 
 </section>
 
 <footer>
-  Made by <span class="name">Mehak Gurjar</span> 🌿
+  Made by <b style="color:#84A98C;">Mehak Gurjar</b> 🌿
 </footer>
 
-<!-- MUSIC -->
-<div class="music-btn" onclick="toggleMusic()">🎧</div>
-
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_4c9b8f6db0.mp3">
-</audio>
-
 <script>
-function toggleMusic(){
-  const music = document.getElementById("bgMusic");
-  if(music.paused){
-    music.volume = 0.3;
-    music.play();
-  } else {
-    music.pause();
-  }
-}
+/* CURSOR FOLLOW GLOW */
+const glow = document.getElementById('glow');
 
-/* SCROLL ANIMATION */
-function reveal() {
-  let reveals = document.querySelectorAll(".reveal");
-
-  for (let i = 0; i < reveals.length; i++) {
-    let windowHeight = window.innerHeight;
-    let elementTop = reveals[i].getBoundingClientRect().top;
-    let elementVisible = 100;
-
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add("active");
-    }
-  }
-}
-
-window.addEventListener("scroll", reveal);
-</script>
-
-<!-- WATSON -->
-<script>
-window.watsonAssistantChatOptions = {
-  integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
-  region: "eu-de",
-  serviceInstanceID: "f3f2da03-ddee-4da0-b22f-2a7277620229",
-  onLoad: async (instance) => {
-    await instance.render();
-    instance.updateCSSVariables({"BASE-z-index":"9999"});
-  }
-};
-setTimeout(function(){
-  const t=document.createElement('script');
-  t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" 
-  + (window.watsonAssistantChatOptions.clientVersion || 'latest') 
-  + "/WatsonAssistantChatEntry.js";
-  document.body.appendChild(t);
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
 });
 </script>
 
