@@ -10,6 +10,7 @@
   --bg:#0f1f1c;
   --text:#ffffff;
   --accent:#84A98C;
+  --olive:#4f6f63;
   --gold:#d4af37;
   --card:rgba(255,255,255,0.08);
 }
@@ -36,14 +37,12 @@ nav {
   align-items:center;
 }
 
-/* TOGGLE WRAPPER */
 .toggle-wrapper {
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* LABEL */
 .toggle-text {
   font-size:0.7rem;
   color:#6b8f80;
@@ -88,22 +87,21 @@ input:checked + .slider:before {
   transform:translateX(26px);
 }
 
-/* HERO IMAGE */
-.hero-img {
-  width:100%;
-  height:300px;
-  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
-}
-
-/* HERO */
+/* HERO TEXT */
 .hero {
   text-align:center;
-  padding:40px 20px;
+  padding:40px 20px 10px;
 }
 
 .hero h1 {
   font-size:2.8rem;
+  margin-bottom:5px;
   animation:drop 1s ease forwards;
+}
+
+.subtitle {
+  font-size:0.95rem;
+  color:#6b8f80;
 }
 
 @keyframes drop {
@@ -111,7 +109,47 @@ input:checked + .slider:before {
   to{opacity:1; transform:translateY(0);}
 }
 
-/* ABOUT BOX */
+/* LARGE TOP BOX */
+.big-about {
+  margin:40px auto;
+  max-width:1100px;
+  padding:40px;
+  border-radius:22px;
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  text-align:center;
+  transition:0.4s;
+}
+
+.big-about:hover {
+  background:rgba(132,169,140,0.12);
+  transform:translateY(-6px);
+  border:1px solid var(--gold);
+}
+
+.big-about h2 {
+  font-size:1.8rem;
+  margin-bottom:15px;
+}
+
+.highlight {
+  color:var(--olive);
+  font-weight:600;
+}
+
+.big-about p {
+  line-height:1.7;
+  font-size:0.95rem;
+}
+
+/* HERO IMAGE */
+.hero-img {
+  width:100%;
+  height:300px;
+  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
+}
+
+/* SMALL ABOUT */
 .about {
   margin:40px auto;
   max-width:1000px;
@@ -126,7 +164,10 @@ input:checked + .slider:before {
 .about:hover {
   transform:translateY(-6px);
   border:1px solid var(--gold);
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.about p {
+  line-height:1.6;
 }
 
 /* GALLERY */
@@ -199,22 +240,43 @@ footer {
   </div>
 </nav>
 
-<!-- IMAGE -->
-<div class="hero-img"></div>
-
 <!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
+  <p class="subtitle">A calm AI companion for understanding your health with clarity</p>
 </section>
 
-<!-- ABOUT -->
+<!-- BIG BOX -->
+<div class="big-about">
+  <h2><span class="highlight">Veliora</span> — Your Intelligent Health Interpreter</h2>
+  <p>
+    <span class="highlight">Veliora</span> is an AI-powered assistant designed to transform the way individuals understand their medical lab reports. 
+    Instead of leaving users confused by technical terminology and numerical values, Veliora translates complex health data into clear, 
+    human-friendly insights. It acts as a bridge between medical information and everyday understanding, helping users make informed decisions 
+    about their well-being.  
+
+    <br><br>
+
+    By analyzing lab values, identifying patterns, and explaining what each parameter means, Veliora provides not just interpretation but also 
+    meaningful guidance. It offers lifestyle suggestions, dietary recommendations, and simplified explanations that empower users to take 
+    control of their health without feeling overwhelmed.  
+
+    <br><br>
+
+    Built with a minimal and calming design philosophy, Veliora ensures that interacting with health information feels intuitive, reassuring, 
+    and accessible — making healthcare understanding more human, more personal, and more transparent 🌿
+  </p>
+</div>
+
+<!-- IMAGE -->
+<div class="hero-img"></div>
+
+<!-- SMALL ABOUT -->
 <div class="about">
   <h2>What is Veliora?</h2>
   <p>
-    Veliora is your personal AI assistant designed to simplify complex lab reports 
-    into clear, understandable insights. It helps you interpret values, understand 
-    health implications, and guides you with lifestyle and diet suggestions — all 
-    in a calm, minimal, and aesthetic experience 🌿
+    Veliora simplifies lab reports into understandable insights, helping you interpret values, 
+    recognize patterns, and take better health decisions through guided suggestions and clarity.
   </p>
 </div>
 
