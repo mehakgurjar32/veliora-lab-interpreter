@@ -25,10 +25,9 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: 0.3s ease;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   display:flex;
   justify-content:space-between;
@@ -41,17 +40,13 @@ nav {
   z-index:1000;
 }
 
-nav h2 {
-  margin:0;
-  color:var(--accent);
-}
+nav h2 { color:var(--accent); }
 
 /* TOGGLE */
 .toggle-wrapper {
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:4px;
 }
 
 .toggle-text {
@@ -65,9 +60,7 @@ nav h2 {
   height:22px;
 }
 
-.switch input {
-  display:none;
-}
+.switch input { display:none; }
 
 .slider {
   position:absolute;
@@ -76,7 +69,6 @@ nav h2 {
   width:100%;
   height:100%;
   cursor:pointer;
-  transition:0.4s;
 }
 
 .slider:before {
@@ -88,22 +80,21 @@ nav h2 {
   bottom:3px;
   background:white;
   border-radius:50%;
-  transition:0.4s;
+  transition:0.3s;
 }
 
 input:checked + .slider {
   background:var(--accent);
-  box-shadow:0 0 10px rgba(132,169,140,0.6);
 }
 
 input:checked + .slider:before {
   transform:translateX(20px);
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   height:90vh;
-  background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -117,7 +108,7 @@ input:checked + .slider:before {
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.45);
 }
 
 .hero h1,
@@ -130,11 +121,15 @@ input:checked + .slider:before {
   font-size:3rem;
 }
 
-.hero p {
-  max-width:500px;
-  margin-top:10px;
+/* NEW SMALL DEFINITION */
+.tagline {
+  margin-top:8px;
+  font-size:0.95rem;
+  opacity:0.9;
+  max-width:450px;
 }
 
+/* BUTTON */
 .btn {
   margin-top:20px;
   padding:12px 24px;
@@ -159,20 +154,37 @@ input:checked + .slider:before {
   text-align:center;
 }
 
-/* IMAGE SECTIONS */
-.section {
+/* GALLERY */
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  padding:40px;
+}
+
+.gallery-item {
   text-align:center;
-  padding:40px 20px;
+  transition:0.4s;
 }
 
-.section img {
+.gallery-item img {
   width:100%;
-  max-width:500px;
-  border-radius:20px;
+  border-radius:18px;
+  transition:0.4s;
 }
 
-.caption {
-  margin-top:10px;
+.gallery-item:hover img {
+  transform:scale(1.08);
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+.gallery-item:hover {
+  transform:translateY(-6px);
+}
+
+.gallery-item p {
+  margin-top:8px;
+  font-size:0.9rem;
   color:#52796F;
 }
 
@@ -187,7 +199,7 @@ footer {
   font-weight:700;
 }
 
-/* MUSIC BUTTON */
+/* MUSIC */
 .music-btn {
   position:fixed;
   bottom:90px;
@@ -208,7 +220,6 @@ iframe {
 
 <body>
 
-<!-- NAV -->
 <nav>
   <h2>Veliora 🌿</h2>
 
@@ -224,7 +235,12 @@ iframe {
 <!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
-  <p>Your calm space to understand lab reports</p>
+  
+  <!-- 👇 ADDED LINE -->
+  <p class="tagline">
+    Veliora is your personal AI that simplifies lab reports into clear, calm insights 🌿
+  </p>
+
   <a href="#" class="btn">Start Exploring</a>
 </section>
 
@@ -236,18 +252,39 @@ iframe {
   <div class="card">📊 Report Summary</div>
 </section>
 
-<!-- IMAGES -->
-<section class="section">
-  <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
-  <div class="caption">Calm wellness 🌿</div>
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
+    <p>Medical clarity 🌿</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
+    <p>Understanding reports</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
+    <p>Calm wellness</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+    <p>Minimal lifestyle</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800">
+    <p>Healthy routines</p>
+  </div>
+
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800">
+    <p>Peaceful living 🌸</p>
+  </div>
 </section>
 
-<section class="section">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
-  <div class="caption">Minimal lifestyle 🌸</div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   Made by <span class="name">Mehak Gurjar</span> 🌿
 </footer>
@@ -256,7 +293,7 @@ iframe {
 <div class="music-btn" onclick="toggleMusic()">🎧</div>
 
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946c3c8e58.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_4c9b8f6db0.mp3">
 </audio>
 
 <script>
@@ -266,11 +303,11 @@ function toggleMode(){
 
 const music = document.getElementById("bgMusic");
 
-/* Enable sound after first user interaction */
-document.body.addEventListener("click", () => {
+/* start after first click */
+document.addEventListener("click", () => {
   if (music.paused) {
-    music.volume = 0.25;
-    music.play();
+    music.volume = 0.3;
+    music.play().catch(()=>{});
   }
 }, { once: true });
 
@@ -287,7 +324,7 @@ function toggleMusic(){
 }
 </script>
 
-<!-- WATSON ASSISTANT -->
+<!-- WATSON -->
 <script>
 window.watsonAssistantChatOptions = {
   integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
