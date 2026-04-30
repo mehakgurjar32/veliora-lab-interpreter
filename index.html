@@ -25,11 +25,10 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: 0.4s ease;
-  overflow-x: hidden;
+  transition: 0.3s ease;
 }
 
-/* NAV */
+/* NAVBAR */
 nav {
   display:flex;
   justify-content:space-between;
@@ -42,6 +41,11 @@ nav {
   z-index:1000;
 }
 
+nav h2 {
+  margin:0;
+  color:var(--accent);
+}
+
 /* TOGGLE */
 .toggle-wrapper {
   display:flex;
@@ -49,6 +53,7 @@ nav {
   align-items:center;
   gap:4px;
 }
+
 .toggle-text {
   font-size:0.7rem;
   color:#52796F;
@@ -59,7 +64,10 @@ nav {
   width:44px;
   height:22px;
 }
-.switch input { display:none; }
+
+.switch input {
+  display:none;
+}
 
 .slider {
   position:absolute;
@@ -70,6 +78,7 @@ nav {
   cursor:pointer;
   transition:0.4s;
 }
+
 .slider:before {
   content:"";
   position:absolute;
@@ -86,40 +95,53 @@ input:checked + .slider {
   background:var(--accent);
   box-shadow:0 0 10px rgba(132,169,140,0.6);
 }
+
 input:checked + .slider:before {
   transform:translateX(20px);
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
+  height:90vh;
+  background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  padding:80px 20px 40px;
-  animation: fadeUp 1s ease;
+  color:white;
+  position:relative;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+}
+
+.hero h1,
+.hero p,
+.hero a {
+  position:relative;
 }
 
 .hero h1 {
-  font-size:2.7rem;
-  animation: fadeIn 1.2s ease;
+  font-size:3rem;
 }
 
 .hero p {
-  color:#52796F;
   max-width:500px;
-  margin:auto;
+  margin-top:10px;
 }
 
 .btn {
   margin-top:20px;
-  display:inline-block;
-  padding:12px 26px;
+  padding:12px 24px;
   background:var(--accent);
   color:white;
   border-radius:30px;
   text-decoration:none;
-  transition:0.3s;
-}
-.btn:hover {
-  transform:scale(1.05);
 }
 
 /* FEATURES */
@@ -127,7 +149,7 @@ input:checked + .slider:before {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  padding:30px;
+  padding:40px;
 }
 
 .card {
@@ -135,49 +157,22 @@ input:checked + .slider:before {
   padding:20px;
   border-radius:16px;
   text-align:center;
-  transition:0.4s;
-  opacity:0;
-  transform:translateY(30px);
-}
-.card.show {
-  opacity:1;
-  transform:translateY(0);
-}
-.card:hover {
-  transform:translateY(-6px);
 }
 
-/* GALLERY */
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  padding:30px;
+/* IMAGE SECTIONS */
+.section {
+  text-align:center;
+  padding:40px 20px;
 }
 
-.gallery-item {
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-.gallery-item.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-.gallery img {
+.section img {
   width:100%;
-  border-radius:16px;
-  transition:0.4s;
-}
-.gallery img:hover {
-  transform:scale(1.05);
+  max-width:500px;
+  border-radius:20px;
 }
 
 .caption {
-  text-align:center;
-  font-size:0.9rem;
-  margin-top:6px;
+  margin-top:10px;
   color:#52796F;
 }
 
@@ -186,6 +181,7 @@ footer {
   text-align:center;
   padding:30px;
 }
+
 .name {
   color:var(--olive);
   font-weight:700;
@@ -201,32 +197,21 @@ footer {
   padding:12px;
   border-radius:50%;
   cursor:pointer;
-  box-shadow:0 0 10px rgba(132,169,140,0.4);
-  transition:0.3s;
-}
-.music-btn:hover {
-  transform:scale(1.1);
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(20px);}
-  to {opacity:1; transform:translateY(0);}
-}
-@keyframes fadeIn {
-  from {opacity:0;}
-  to {opacity:1;}
 }
 
 /* CHAT FIX */
-iframe { bottom:20px !important; }
+iframe {
+  bottom:20px !important;
+}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
   <h2>Veliora 🌿</h2>
+
   <div class="toggle-wrapper">
     <label class="switch">
       <input type="checkbox" onclick="toggleMode()">
@@ -236,12 +221,14 @@ iframe { bottom:20px !important; }
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Understand Your Health, Simply 🌿</h1>
-  <p>Veliora transforms complex lab reports into clear insights you can trust.</p>
-  <a href="#" class="btn">Try Veliora</a>
+  <h1>Veliora 🌿</h1>
+  <p>Your calm space to understand lab reports</p>
+  <a href="#" class="btn">Start Exploring</a>
 </section>
 
+<!-- FEATURES -->
 <section class="features">
   <div class="card">🧠 Smart Interpretation</div>
   <div class="card">🍎 Diet Suggestions</div>
@@ -249,28 +236,18 @@ iframe { bottom:20px !important; }
   <div class="card">📊 Report Summary</div>
 </section>
 
-<section class="gallery">
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
-    <div class="caption">Medical clarity 🌿</div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
-    <div class="caption">Understanding reports</div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
-    <div class="caption">Calm wellness</div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
-    <div class="caption">Minimal lifestyle</div>
-  </div>
+<!-- IMAGES -->
+<section class="section">
+  <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
+  <div class="caption">Calm wellness 🌿</div>
 </section>
 
+<section class="section">
+  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+  <div class="caption">Minimal lifestyle 🌸</div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   Made by <span class="name">Mehak Gurjar</span> 🌿
 </footer>
@@ -279,7 +256,7 @@ iframe { bottom:20px !important; }
 <div class="music-btn" onclick="toggleMusic()">🎧</div>
 
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946c3c8e58.mp3?filename=calm-ambient-12159.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946c3c8e58.mp3">
 </audio>
 
 <script>
@@ -287,26 +264,21 @@ function toggleMode(){
   document.body.classList.toggle("dark");
 }
 
-// SCROLL ANIMATION
-const elements = document.querySelectorAll('.card, .gallery-item');
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight - 80){
-      el.classList.add('show');
-    }
-  });
-});
-
-// MUSIC FIX
 const music = document.getElementById("bgMusic");
+
+/* Enable sound after first user interaction */
+document.body.addEventListener("click", () => {
+  if (music.paused) {
+    music.volume = 0.25;
+    music.play();
+  }
+}, { once: true });
+
 function toggleMusic(){
   const btn = document.querySelector(".music-btn");
 
   if (music.paused) {
-    music.volume = 0.25;
-    music.play().catch(() => {
-      alert("Tap again to enable sound 🌿");
-    });
+    music.play();
     btn.innerHTML = "🔊";
   } else {
     music.pause();
@@ -315,7 +287,7 @@ function toggleMusic(){
 }
 </script>
 
-<!-- WATSON -->
+<!-- WATSON ASSISTANT -->
 <script>
 window.watsonAssistantChatOptions = {
   integrationID: "7aeb8f53-5891-40d7-80d9-bb93e2fa37d4",
