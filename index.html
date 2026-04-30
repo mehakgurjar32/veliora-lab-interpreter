@@ -33,7 +33,6 @@ body {
   font-size:0.75rem;
   padding:6px;
   background:rgba(132,169,140,0.15);
-  letter-spacing:1px;
 }
 
 /* NAV */
@@ -100,28 +99,21 @@ input:checked + .slider:before {
 .subtitle {
   font-size:0.9rem;
   color:#7aa697;
-  margin-top:5px;
 }
 
 .quote {
   font-style:italic;
-  margin-top:6px;
   color:#8fb3a5;
 }
 
-@keyframes drop {
-  from {opacity:0; transform:translateY(-50px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
-/* PARALLAX IMAGE */
+/* IMAGE */
 .hero-img {
   height:320px;
   background:url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1400') center/cover;
   background-attachment:fixed;
 }
 
-/* OVERLAY BOX */
+/* OVERLAY */
 .rhombus {
   max-width:1000px;
   margin:-100px auto 40px;
@@ -139,30 +131,50 @@ input:checked + .slider:before {
   border:1px solid var(--accent);
 }
 
-.rhombus p {
-  max-width:850px;
-  margin:auto;
-  line-height:1.7;
-}
-
-/* GALLERY */
+/* IMAGE CARDS */
 .gallery {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
   padding:30px;
 }
 
-.gallery img {
-  width:100%;
-  height:170px;
-  object-fit:cover;
-  border-radius:16px;
+.image-card {
+  background:var(--card);
+  border-radius:18px;
+  overflow:hidden;
   transition:0.4s;
 }
 
-.gallery img:hover {
-  transform:scale(1.08);
+.image-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.image-card img {
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+/* CAPTION */
+.caption {
+  padding:12px;
+  font-size:0.9rem;
+}
+
+/* TAGS */
+.tags {
+  margin-top:6px;
+}
+
+.tag {
+  display:inline-block;
+  padding:4px 10px;
+  margin:3px;
+  font-size:0.7rem;
+  border-radius:12px;
+  background:rgba(132,169,140,0.2);
 }
 
 /* FEATURES */
@@ -186,7 +198,6 @@ input:checked + .slider:before {
   border:1px solid var(--accent);
 }
 
-/* FOOTER */
 footer {
   text-align:center;
   padding:30px;
@@ -196,7 +207,6 @@ footer {
 
 <body>
 
-<!-- TOP STRIP -->
 <div class="top-strip">AI-powered health clarity 🌿</div>
 
 <nav>
@@ -211,31 +221,58 @@ footer {
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <h1>Veliora 🌿</h1>
   <p class="subtitle">Your personal AI lab report interpreter</p>
   <p class="quote">“Clarity in health begins with understanding.” 🌿</p>
 </section>
 
-<!-- IMAGE -->
 <div class="hero-img"></div>
 
-<!-- OVERLAY -->
 <div class="rhombus">
   <h2>✨ Veliora — Your AI Health Companion</h2>
   <p>
-    Veliora 🤖 simplifies complex lab reports into clear, structured insights 🧠. 
-    It helps you understand values 📊, detect abnormalities ⚠️, and improve your health 🌱 
-    through intelligent guidance.
+    Veliora simplifies complex lab reports into structured insights 🧠 and helps you
+    understand values, detect abnormalities, and improve your health 🌿.
   </p>
 </div>
 
-<!-- GALLERY -->
+<!-- IMAGE CARDS WITH LABELS -->
 <section class="gallery">
-  <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
-  <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
+    <div class="caption">
+      Medical clarity 🌿
+      <div class="tags">
+        <span class="tag">Analysis</span>
+        <span class="tag">Reports</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
+    <div class="caption">
+      Calm wellness 💫
+      <div class="tags">
+        <span class="tag">Health</span>
+        <span class="tag">Balance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-card">
+    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
+    <div class="caption">
+      Minimal lifestyle 🌱
+      <div class="tags">
+        <span class="tag">Routine</span>
+        <span class="tag">Focus</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- FEATURES -->
