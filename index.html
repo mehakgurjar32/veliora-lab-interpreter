@@ -31,7 +31,6 @@ body {
 nav {
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:12px 16px;
   background:var(--card);
   backdrop-filter:blur(12px);
@@ -41,55 +40,6 @@ nav {
 }
 
 nav h2 { color:var(--accent); }
-
-/* TOGGLE */
-.toggle-wrapper {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.toggle-text {
-  font-size:0.7rem;
-  color:#52796F;
-}
-
-.switch {
-  position:relative;
-  width:44px;
-  height:22px;
-}
-
-.switch input { display:none; }
-
-.slider {
-  position:absolute;
-  background:#ccc;
-  border-radius:20px;
-  width:100%;
-  height:100%;
-  cursor:pointer;
-}
-
-.slider:before {
-  content:"";
-  position:absolute;
-  height:16px;
-  width:16px;
-  left:3px;
-  bottom:3px;
-  background:white;
-  border-radius:50%;
-  transition:0.3s;
-}
-
-input:checked + .slider {
-  background:var(--accent);
-}
-
-input:checked + .slider:before {
-  transform:translateX(20px);
-}
 
 /* HERO */
 .hero {
@@ -111,28 +61,13 @@ input:checked + .slider:before {
   background:rgba(0,0,0,0.45);
 }
 
-.hero h1, .hero p, .hero a {
+.hero h1, .hero p {
   position:relative;
 }
 
-.hero h1 {
-  font-size:3rem;
-}
-
 .tagline {
-  font-size:0.95rem;
-  margin-top:8px;
+  font-size:1rem;
   max-width:450px;
-}
-
-/* BUTTON */
-.btn {
-  margin-top:20px;
-  padding:12px 24px;
-  background:var(--accent);
-  color:white;
-  border-radius:30px;
-  text-decoration:none;
 }
 
 /* FEATURES */
@@ -143,45 +78,61 @@ input:checked + .slider:before {
   padding:40px;
 }
 
-.card {
-  background:var(--card);
-  padding:20px;
-  border-radius:16px;
-  text-align:center;
-}
-
 /* GALLERY */
 .gallery {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:25px;
   padding:40px;
 }
 
-.gallery-item {
-  text-align:center;
-  transition:0.4s;
+/* COMMON ANIMATION BASE */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
 }
 
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* IMAGE CARDS */
 .gallery-item img {
   width:100%;
+  height:180px;
+  object-fit:cover;
   border-radius:18px;
   transition:0.4s;
 }
 
 .gallery-item:hover img {
-  transform:scale(1.08);
-  box-shadow:0 15px 30px rgba(0,0,0,0.2);
-}
-
-.gallery-item:hover {
-  transform:translateY(-6px);
+  transform:scale(1.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .gallery-item p {
+  text-align:center;
   margin-top:8px;
-  font-size:0.9rem;
   color:#52796F;
+}
+
+/* TEXT CARDS */
+.text-card {
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:18px;
+  height:180px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+
+.text-card h3 {
+  color:#84A98C;
 }
 
 /* FOOTER */
@@ -192,7 +143,6 @@ footer {
 
 .name {
   color:var(--olive);
-  font-weight:700;
 }
 
 /* MUSIC */
@@ -208,9 +158,8 @@ footer {
 }
 
 /* CHAT FIX */
-iframe {
-  bottom:20px !important;
-}
+iframe { bottom:20px !important; }
+
 </style>
 </head>
 
@@ -218,72 +167,55 @@ iframe {
 
 <nav>
   <h2>Veliora 🌿</h2>
-
-  <div class="toggle-wrapper">
-    <label class="switch">
-      <input type="checkbox" onclick="toggleMode()">
-      <span class="slider"></span>
-    </label>
-    <span class="toggle-text">Dark mode</span>
-  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Veliora 🌿</h1>
-  <p class="tagline">Your personal AI that simplifies lab reports into clear insights 🌿</p>
-  <a href="#" class="btn">Start Exploring</a>
+  <h1 class="reveal">Veliora 🌿</h1>
+  <p class="tagline reveal">Your personal AI that simplifies lab reports into clear insights</p>
 </section>
 
-<!-- FEATURES -->
-<section class="features">
-  <div class="card">🧠 Smart Interpretation</div>
-  <div class="card">🍎 Diet Suggestions</div>
-  <div class="card">🌿 Lifestyle Guidance</div>
-  <div class="card">📊 Report Summary</div>
-</section>
-
-<!-- GALLERY (BALANCED 2 ROWS) -->
+<!-- GALLERY -->
 <section class="gallery">
 
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800">
     <p>Medical clarity 🌿</p>
   </div>
 
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800">
     <p>Understanding reports</p>
   </div>
 
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800">
     <p>Calm wellness</p>
   </div>
 
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800">
     <p>Minimal lifestyle</p>
   </div>
 
-  <div class="gallery-item">
+  <div class="gallery-item reveal">
     <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800">
     <p>Healthy routines</p>
   </div>
 
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800">
-    <p>Peaceful living 🌸</p>
+  <div class="text-card reveal">
+    <h3>Why Veliora?</h3>
+    <p>Understand lab values simply without confusion.</p>
   </div>
 
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800">
-    <p>Balanced lifestyle 🌿</p>
+  <div class="text-card reveal">
+    <h3>Smart Insights</h3>
+    <p>Diet + lifestyle suggestions instantly.</p>
   </div>
 
-  <div class="gallery-item">
-    <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800">
-    <p>Healthy habits</p>
+  <div class="text-card reveal">
+    <h3>Designed for You</h3>
+    <p>Minimal, aesthetic & calm 🌿</p>
   </div>
 
 </section>
@@ -300,31 +232,32 @@ iframe {
 </audio>
 
 <script>
-function toggleMode(){
-  document.body.classList.toggle("dark");
-}
-
-const music = document.getElementById("bgMusic");
-
-/* Play after first interaction */
-document.addEventListener("click", () => {
-  if (music.paused) {
-    music.volume = 0.3;
-    music.play().catch(()=>{});
-  }
-}, { once: true });
-
 function toggleMusic(){
-  const btn = document.querySelector(".music-btn");
-
-  if (music.paused) {
+  const music = document.getElementById("bgMusic");
+  if(music.paused){
+    music.volume = 0.3;
     music.play();
-    btn.innerHTML = "🔊";
   } else {
     music.pause();
-    btn.innerHTML = "🎧";
   }
 }
+
+/* SCROLL ANIMATION */
+function reveal() {
+  let reveals = document.querySelectorAll(".reveal");
+
+  for (let i = 0; i < reveals.length; i++) {
+    let windowHeight = window.innerHeight;
+    let elementTop = reveals[i].getBoundingClientRect().top;
+    let elementVisible = 100;
+
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", reveal);
 </script>
 
 <!-- WATSON -->
